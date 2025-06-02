@@ -12,3 +12,4 @@ wheels/
 # custom
 models/
 model_conf.json
+chats/
