@@ -14,11 +14,14 @@ local-llm-chat/
   model_conf.json
 ```
 
-In `model_conf.json` specify a `repo_id` and `filename` from HuggingFace, eg:
+In `model_conf.json` specify an object `download_model` with 
+`repo_id` and `filename` from HuggingFace, eg:
 ```
 {
-	"repo_id": "TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF",
-	"filename": "tinyllama-1.1b-chat-v1.0.Q2_K.gguf"
+	"download_model": {
+		"repo_id": "TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF",
+		"filename": "tinyllama-1.1b-chat-v1.0.Q2_K.gguf"
+	}
 }
 ```
 
@@ -30,6 +33,20 @@ uv run download_model.py
 ```
 
 ## Running
+
+### Choose a model
+
+In `model_conf.json` add an object called `main` with a `filename` (you
+don't have to specify the `models/` folder since that's hard coded):
+
+```
+{
+	"download_model": { ... }
+	"main": {
+		"filename": "tinyllama-1.1b-chat-v1.0.Q2_K.gguf"
+	}
+}
+```
 
 Use `uv` to run `main.py`:
 

@@ -7,7 +7,8 @@ def load_model(path_to_model):
     model = Llama(
         model_path = path_to_model,
         n_gpu_layers = 20,
-        n_ctx = 8192,
+        n_threads = 8,
+        n_ctx = 2048,
         verbose = False
     )
 
@@ -15,7 +16,7 @@ def load_model(path_to_model):
 
 def chat_loop(model):
     """Run the interactive REPL."""
-    print("🦙 Local LLM REPL is ready! Type 'exit' to quit.\n")
+    print("\n🦙 Local LLM REPL is ready! Type 'exit' to quit.\n")
     GREEN = "\033[92m"
     ORANGE = "\033[38;5;208m"  # True orange using 256-color escape
     RESET = "\033[0m"          # Resets color to default (white)
@@ -49,6 +50,6 @@ def chat_loop(model):
 
 if __name__ == "__main__":
     with open("model_conf.json", "r") as conf_file:
-        model_conf = json.load(conf_file)
+        model_conf = json.load(conf_file)["main"]
         model = load_model("models/" + model_conf["filename"])
         chat_loop(model)
