@@ -35,7 +35,7 @@ def chat_loop(model):
 
             output = model(
                 prompt = full_prompt, 
-                max_tokens=256, 
+                max_tokens=1000, 
                 stop=["<|user|>", 
                 "<|assistant|>"]
             )
